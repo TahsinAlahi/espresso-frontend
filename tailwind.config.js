@@ -7,6 +7,9 @@ export default {
         rancho: ["Rancho", "cursive"],
         raleway: ["Raleway", "sans-serif"],
       },
+      backgroundColor: {
+        "primary-btn": "#E3B577",
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,12 @@
 import React from "react";
+import NavBar from "./components/NavBar";
 
 function AppLayout() {
-  return <div>AppLayout</div>;
+  return (
+    <div>
+      <NavBar />
+    </div>
+  );
 }
 
 export default AppLayout;

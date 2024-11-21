@@ -9,6 +9,10 @@ export default {
       },
       backgroundColor: {
         "primary-btn": "#E3B577",
+        "show-btn": "#D2B48C",
+        "edit-btn": "#3C393B",
+        "delete-btn": "#EA4744",
+        card: "#F5F4F1",
       },
     },
   },

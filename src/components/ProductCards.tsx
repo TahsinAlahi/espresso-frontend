@@ -1,6 +1,7 @@
 import { BsCupHot } from "react-icons/bs";
 import cupBg from "../assets/more/4.png";
 import coffeeHouseBg from "../assets/more/5.png";
+import ProductCard from "./ProductCard";
 
 function ProductCards() {
   return (
@@ -27,6 +28,10 @@ function ProductCards() {
           <p style={{ textShadow: "#424242 2px 2px 5px" }}>Add Coffee</p>
           <BsCupHot className="text-xl" />
         </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-5">
+        <ProductCard />
       </div>
     </main>
   );

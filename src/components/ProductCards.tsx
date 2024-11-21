@@ -1,8 +1,20 @@
 import { BsCupHot } from "react-icons/bs";
+import cupBg from "../assets/more/4.png";
+import coffeeHouseBg from "../assets/more/5.png";
 
 function ProductCards() {
   return (
-    <main className="font-raleway py-16">
+    <main className="font-raleway py-16 relative min-h-svh">
+      {/* Background */}
+      <img
+        src={cupBg}
+        className="absolute md:top-24 top-48 left-0 md:w-1/5 w-1/3 z-[-1]"
+      />
+      <img
+        src={coffeeHouseBg}
+        className="absolute bottom-6 right-0 md:w-1/4 w-1/2 z-[-1]"
+      />
+
       <div className="text-center space-y-4">
         <h1 className="text-xl">--- Sip & Savor ---</h1>
         <h1

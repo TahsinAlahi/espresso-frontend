@@ -3,7 +3,7 @@ import headerBg from "../assets/more/3.png";
 function Header() {
   return (
     <header
-      className="min-h-[calc(100svh-81.95px)] w-full bg-center bg-cover bg-no-repeat flex items-center justify-center"
+      className="min-h-[calc(100svh-91.6px)] w-full bg-center bg-cover bg-no-repeat flex items-center justify-center"
       style={{ backgroundImage: `url(${headerBg})` }}
     >
       <div className="text-white lg:w-1/3 md:w-1/2 ml-auto space-y-5 md:mr-28 px-12">

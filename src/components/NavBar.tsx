@@ -9,8 +9,8 @@ function NavBar() {
       aria-label="navbar"
     >
       <div className="flex items-center justify-center">
-        <img src={logo} alt="logo" className="w-12" />
-        <h1 className="font-rancho font-semibold text-3xl md:text-4xl text-white">
+        <img src={logo} alt="logo" className="w-14" />
+        <h1 className="font-rancho font-semibold text-5xl text-white">
           Espresso Emporium
         </h1>
       </div>

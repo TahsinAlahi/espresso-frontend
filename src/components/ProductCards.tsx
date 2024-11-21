@@ -30,7 +30,7 @@ function ProductCards() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-5 mt-10">
         <ProductCard />
       </div>
     </main>

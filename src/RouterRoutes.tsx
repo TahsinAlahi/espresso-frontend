@@ -3,6 +3,7 @@ import AppLayout from "./AppLayout";
 import HomePage from "./pages/HomePage";
 import AddCoffeePage from "./pages/AddCoffeePage";
 import CoffeeDetailPage from "./pages/CoffeeDetailPage";
+import EditCoffeePage from "./pages/EditCoffeePage";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,12 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/add-coffee",
+        path: "/add-coffee/:id",
         element: <AddCoffeePage />,
+      },
+      {
+        path: "/edit-coffee/:id",
+        element: <EditCoffeePage />,
       },
       {
         path: "/coffee",

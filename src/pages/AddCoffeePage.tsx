@@ -23,7 +23,7 @@ function AddCoffeePage() {
 
   return (
     <main
-      className="py-16 bg-red-500 w-full min-h-[calc(100svh-91.6px)] flex items-center justify-center bg-cover bg-center"
+      className="py-16 w-full min-h-[calc(100svh-91.6px)] flex items-center justify-center bg-cover bg-center"
       style={{ backgroundImage: `url(${bg})` }}
     >
       <div className="md:max-w-screen-lg mx-auto font-raleway px-3 md:px-6 lg:px-0 w-full">

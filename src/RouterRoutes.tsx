@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/add-coffee/:id",
+        path: "/add-coffee",
         element: <AddCoffeePage />,
       },
       {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <EditCoffeePage />,
       },
       {
-        path: "/coffee",
+        path: "/coffee/:id",
         element: <CoffeeDetailPage />,
       },
       {

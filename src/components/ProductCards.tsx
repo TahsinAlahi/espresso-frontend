@@ -18,10 +18,7 @@ function ProductCards() {
 
       <div className="text-center space-y-4">
         <h1 className="text-xl">--- Sip & Savor ---</h1>
-        <h1
-          className="text-4xl font-rancho font-bold drop-shadow-xl"
-          style={{ textShadow: "#2e2d2d 1px 2px 4px" }}
-        >
+        <h1 className="text-4xl font-rancho font-bold drop-shadow-xl text-shadow text-secondary">
           Our Popular Products
         </h1>
         <button className="flex items-center gap-2 hover:bg-primary-btn px-4 py-2 bg-primary-btn hover:text-gray-800 text-gray-100 font-rancho text-xl font-semibold border-2 border-black mx-auto duration-150 transition rounded-md ">

@@ -14,6 +14,10 @@ export default {
         "delete-btn": "#EA4744",
         card: "#F5F4F1",
       },
+      colors: {
+        primary: "#1B1A1A",
+        secondary: "#331A15",
+      },
     },
   },
   plugins: [],

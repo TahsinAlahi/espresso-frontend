@@ -1,5 +1,5 @@
 interface CoffeeType {
-  id: number;
+  _id: number;
   name: string;
   chef: string;
   supplier: string;
@@ -7,6 +7,7 @@ interface CoffeeType {
   category: string;
   details: string;
   image: string;
+  price: number | string;
 }
 
 interface CoffeeContextType {

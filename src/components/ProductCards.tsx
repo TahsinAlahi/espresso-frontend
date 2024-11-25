@@ -3,8 +3,11 @@ import cupBg from "../assets/more/4.png";
 import coffeeHouseBg from "../assets/more/5.png";
 import ProductCard from "./ProductCard";
 import { Link } from "react-router-dom";
+import { useCoffeeContext } from "../contexts/CoffeeContext";
 
 function ProductCards() {
+  const { allCoffee } = useCoffeeContext();
+
   return (
     <main className="font-raleway py-16 relative min-h-svh">
       {/* Background */}
@@ -32,7 +35,9 @@ function ProductCards() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-5 mt-10">
-        <ProductCard />
+        {allCoffee.map((coffee) => (
+          <ProductCard key={coffee._id} coffee={coffee} />
+        ))}
       </div>
     </main>
   );

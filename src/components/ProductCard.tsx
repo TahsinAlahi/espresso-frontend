@@ -2,28 +2,28 @@ import { FaEye, FaPen } from "react-icons/fa";
 import coffeeCup from "../assets/1.png";
 import { MdDelete } from "react-icons/md";
 
-function ProductCard() {
+function ProductCard({ coffee }: { coffee: CoffeeType }) {
   return (
     <div className="grid grid-cols-6 bg-card bg-opacity-70 p-2 rounded-md">
       <div className="col-span-2 w-full">
         <img
-          src={coffeeCup}
+          src={coffee.image || coffeeCup}
           alt=""
           className="h-full object-cover object-center"
         />
       </div>
       <div className="col-span-3 font-raleway my-auto space-y-2">
         <p>
-          <span className="font-semibold">Name:</span>
-          item.name
+          <span className="font-semibold">Name: </span>
+          {coffee.name}
         </p>
         <p>
-          <span className="font-semibold">Chef:</span>
-          item.chef
+          <span className="font-semibold">Chef: </span>
+          {coffee.chef}
         </p>
         <p>
-          <span className="font-semibold">Price:</span>
-          item.price taka
+          <span className="font-semibold">Price: </span>
+          {coffee.price ? `${coffee.price} taka` : "Free"}
         </p>
       </div>
       <div className="col-span-1 text-lg my-auto mx-auto text-center space-y-4 text-white">

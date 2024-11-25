@@ -5,11 +5,16 @@ import AddCoffeePage from "./pages/AddCoffeePage";
 import CoffeeDetailPage from "./pages/CoffeeDetailPage";
 import EditCoffeePage from "./pages/EditCoffeePage";
 import ErrorPage from "./pages/ErrorPage";
+import CoffeeProvider from "./contexts/CoffeeContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <CoffeeProvider>
+        <AppLayout />
+      </CoffeeProvider>
+    ),
     children: [
       {
         path: "/",

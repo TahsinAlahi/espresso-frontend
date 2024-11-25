@@ -1,10 +1,29 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-const coffeeContext = createContext(null);
+const coffeeContext = createContext<CoffeeContextType | null>(null);
 
 function CoffeeProvider({ children }: { children: React.ReactNode }) {
+  const [allCoffee, setAllCoffee] = useState<CoffeeType[]>([]);
+
+  useEffect(() => {
+    async function getAllCoffees() {
+      try {
+        const res = await fetch("http://localhost:5000/api/coffees");
+        const data = await res.json();
+
+        setAllCoffee(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getAllCoffees();
+  }, []);
+
+  const value = { allCoffee };
+
   return (
-    <coffeeContext.Provider value={null}>{children}</coffeeContext.Provider>
+    <coffeeContext.Provider value={value}>{children}</coffeeContext.Provider>
   );
 }
 

@@ -8,7 +8,7 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function getAllCoffees() {
       try {
-        const res = await fetch("http://localhost:5000/api/coffees");
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/coffees`);
         const data = await res.json();
 
         setAllCoffee(data);
@@ -20,7 +20,34 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
     getAllCoffees();
   }, []);
 
-  const value = { allCoffee };
+  async function handleAddCoffee(
+    coffee: NewCoffeeType
+  ): Promise<FuncReturnType> {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/coffees`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(coffee),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setAllCoffee((prev) => [...prev, data]);
+        return { status: "success", message: "Coffee added successfully" };
+      } else {
+        const error = await res.json();
+        return {
+          status: "error",
+          message: error.message || "Something went wrong",
+        };
+      }
+    } catch (error: any) {
+      console.error(error);
+      return { status: "error", message: "Something went wrong" };
+    }
+  }
+
+  const value = { allCoffee, handleAddCoffee };
 
   return (
     <coffeeContext.Provider value={value}>{children}</coffeeContext.Provider>

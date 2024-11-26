@@ -1,6 +1,7 @@
 import { FormEvent, useRef } from "react";
 import bg from "../assets/more/11.png";
 import { Link } from "react-router-dom";
+import { useCoffeeContext } from "../contexts/CoffeeContext";
 
 const inputFieldArr = [
   { title: "Name", placeholder: "Enter coffee name" },
@@ -9,16 +10,30 @@ const inputFieldArr = [
   { title: "Taste", placeholder: "Enter coffee taste" },
   { title: "Category", placeholder: "Enter coffee category" },
   { title: "Details", placeholder: "Enter coffee details" },
+  { title: "Price", placeholder: "Enter coffee price" },
+  { title: "Image", placeholder: "Enter coffee image" },
 ];
 
 function AddCoffeePage() {
+  const { handleAddCoffee } = useCoffeeContext();
   const formRef = useRef<HTMLFormElement>(null);
 
-  function handleFormSubmit(e: FormEvent) {
+  async function handleFormSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!formRef.current === null) return;
-    const formData = new FormData(formRef.current as HTMLFormElement);
-    Object.fromEntries(formData.entries());
+    if (formRef.current === null) return;
+
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(
+      formData.entries()
+    ) as unknown as NewCoffeeType;
+
+    const res = await handleAddCoffee(data);
+
+    if (res.status === "success") {
+      alert(res.message);
+    } else {
+      alert(res.message);
+    }
   }
 
   return (
@@ -44,7 +59,7 @@ function AddCoffeePage() {
             distribution of letters, as opposed to using Content here.
           </p>
           <form
-            className="lg:w-3/4 md:w-5/6 mx-auto grid grid-cols-1 w-full gap-4 text-primary"
+            className="lg:w-3/4 md:w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 w-full gap-4 text-primary"
             ref={formRef}
             onSubmit={handleFormSubmit}
           >
@@ -59,16 +74,8 @@ function AddCoffeePage() {
                 />
               </div>
             ))}
-            <div className="w-full space-y-2 md:col-span-2">
-              <label className="text-xl">Photo</label>
-              <input
-                type="text"
-                className="w-full py-2 px-3 rounded-md outline-none text-lg"
-                placeholder="Enter coffee photo"
-                name="photo"
-              />
-            </div>
-            <button className="px-4 py-2 bg-primary-btn hover:text-gray-800 text-gray-100 font-rancho text-xl font-semibold md:col-span-2 border-secondary border-2 duration-150 transition rounded-sm">
+
+            <button className="px-4 py-2 mt-3 bg-primary-btn hover:text-gray-800 text-gray-100 font-rancho text-xl font-semibold md:col-span-2 border-secondary border-2 duration-150 transition rounded-sm">
               Add Coffee
             </button>
           </form>

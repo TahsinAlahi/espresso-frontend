@@ -43,7 +43,10 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
       }
     } catch (error: any) {
       console.error(error);
-      return { status: "error", message: "Something went wrong" };
+      return {
+        status: "error",
+        message: error.message || "Something went wrong",
+      };
     }
   }
 

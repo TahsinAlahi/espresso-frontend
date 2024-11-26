@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from "react";
 import bg from "../assets/more/11.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCoffeeContext } from "../contexts/CoffeeContext";
 
 const inputFieldArr = [
@@ -16,6 +16,7 @@ const inputFieldArr = [
 
 function AddCoffeePage() {
   const { handleAddCoffee } = useCoffeeContext();
+  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleFormSubmit(e: FormEvent) {
@@ -30,7 +31,7 @@ function AddCoffeePage() {
     const res = await handleAddCoffee(data);
 
     if (res.status === "success") {
-      alert(res.message);
+      navigate("/");
     } else {
       alert(res.message);
     }
@@ -71,6 +72,7 @@ function AddCoffeePage() {
                   className="w-full py-2 px-3 rounded-md outline-none text-lg"
                   placeholder={inputField.placeholder}
                   name={inputField.title.toLowerCase()}
+                  required
                 />
               </div>
             ))}

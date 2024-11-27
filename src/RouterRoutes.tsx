@@ -1,11 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import AppLayout from "./AppLayout";
-import HomePage from "./pages/HomePage";
-import AddCoffeePage from "./pages/AddCoffeePage";
-import CoffeeDetailPage from "./pages/CoffeeDetailPage";
-import EditCoffeePage from "./pages/EditCoffeePage";
-import ErrorPage from "./pages/ErrorPage";
 import CoffeeProvider from "./contexts/CoffeeContext";
+import Loader from "./Loader";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const AddCoffeePage = lazy(() => import("./pages/AddCoffeePage"));
+const CoffeeDetailPage = lazy(() => import("./pages/CoffeeDetailPage"));
+const EditCoffeePage = lazy(() => import("./pages/EditCoffeePage"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+
+function SuspenseWrapper(Component: React.FC) {
+  return (
+    <Suspense fallback={<Loader className="h-svh" />}>
+      <Component />
+    </Suspense>
+  );
+}
 
 const router = createBrowserRouter([
   {
@@ -19,23 +30,23 @@ const router = createBrowserRouter([
       {
         path: "/",
         index: true,
-        element: <HomePage />,
+        element: SuspenseWrapper(HomePage),
       },
       {
         path: "/add-coffee",
-        element: <AddCoffeePage />,
+        element: SuspenseWrapper(AddCoffeePage),
       },
       {
         path: "/edit-coffee/:id",
-        element: <EditCoffeePage />,
+        element: SuspenseWrapper(EditCoffeePage),
       },
       {
         path: "/coffee/:id",
-        element: <CoffeeDetailPage />,
+        element: SuspenseWrapper(CoffeeDetailPage),
       },
       {
         path: "*",
-        element: <ErrorPage />,
+        element: SuspenseWrapper(ErrorPage),
       },
     ],
   },

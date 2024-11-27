@@ -54,7 +54,7 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
     updatedCoffee: NewCoffeeType,
     oldCoffee: CoffeeType,
     id: string
-  ): Promise<FuncReturnType | undefined> {
+  ): Promise<FuncReturnType> {
     try {
       const updatedKeys = Object.keys(updatedCoffee).reduce((acc, key) => {
         const value = updatedCoffee[key as keyof NewCoffeeType];
@@ -64,10 +64,13 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
         return acc;
       }, {} as Partial<NewCoffeeType>);
 
+      if (!Object.keys(updatedKeys).length)
+        throw new Error("No keys to update");
+
       const res = await fetch(
         `${import.meta.env.VITE_BASE_URL}/api/coffees/${id}`,
         {
-          method: "PUT",
+          method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updatedKeys),
         }

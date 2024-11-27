@@ -17,7 +17,7 @@ interface CoffeeContextType {
     updatedCoffee: NewCoffeeType,
     oldCoffee: CoffeeType,
     id: string
-  ) => Promise<FuncReturnType | undefined>;
+  ) => Promise<FuncReturnType>;
   handleDeleteCoffee: (id: string) => Promise<FuncReturnType>;
 }
 

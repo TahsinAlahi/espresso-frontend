@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from "react";
 import bg from "../assets/more/11.png";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useSingleCoffee from "../hooks/useSingleCoffee";
 import { useCoffeeContext } from "../contexts/CoffeeContext";
 
@@ -16,6 +16,7 @@ const inputFieldArr = [
 ];
 
 function EditCoffeePage() {
+  const navigate = useNavigate();
   const { handleEditCoffee } = useCoffeeContext();
   const formRef = useRef<HTMLFormElement>(null);
   const { id } = useParams();
@@ -28,7 +29,7 @@ function EditCoffeePage() {
     return coffee[key as keyof CoffeeType];
   }
 
-  function handleFormSubmit(e: FormEvent) {
+  async function handleFormSubmit(e: FormEvent) {
     e.preventDefault();
     if (!formRef.current === null) return;
     const formData = new FormData(formRef.current as HTMLFormElement);
@@ -36,7 +37,8 @@ function EditCoffeePage() {
       formData.entries()
     ) as unknown as NewCoffeeType;
 
-    handleEditCoffee(data, coffee!, id!);
+    const res = await handleEditCoffee(data, coffee!, id!);
+    if (res.status === "success") navigate("/");
   }
 
   return (

@@ -1,8 +1,15 @@
 import { FaEye, FaPen } from "react-icons/fa";
 import coffeeCup from "../assets/1.png";
 import { MdDelete } from "react-icons/md";
+import { useCoffeeContext } from "../contexts/CoffeeContext";
 
 function ProductCard({ coffee }: { coffee: CoffeeType }) {
+  const { handleDeleteCoffee } = useCoffeeContext();
+
+  function onDelete() {
+    handleDeleteCoffee(coffee._id);
+  }
+
   return (
     <div className="grid grid-cols-6 bg-card bg-opacity-70 p-2 rounded-md">
       <div className="col-span-2 w-full">
@@ -33,7 +40,10 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
         <div className="p-2 bg-edit-btn rounded-md cursor-pointer">
           <FaPen />
         </div>
-        <div className="p-2 bg-delete-btn rounded-md cursor-pointer">
+        <div
+          className="p-2 bg-delete-btn rounded-md cursor-pointer"
+          onClick={onDelete}
+        >
           <MdDelete />
         </div>
       </div>

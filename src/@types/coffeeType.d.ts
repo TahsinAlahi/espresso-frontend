@@ -1,5 +1,5 @@
 interface CoffeeType {
-  _id: number;
+  _id: string;
   name: string;
   chef: string;
   supplier: string;
@@ -13,6 +13,7 @@ interface CoffeeType {
 interface CoffeeContextType {
   allCoffee: CoffeeType[];
   handleAddCoffee: (coffee: NewCoffeeType) => Promise<FuncReturnType>;
+  handleDeleteCoffee: (id: string) => Promise<FuncReturnType>;
 }
 
 interface NewCoffeeType {

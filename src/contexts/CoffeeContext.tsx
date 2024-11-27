@@ -50,7 +50,33 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const value = { allCoffee, handleAddCoffee };
+  async function handleDeleteCoffee(id: string): Promise<FuncReturnType> {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/coffees/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error);
+      }
+
+      setAllCoffee((prev) => prev.filter((coffee) => coffee._id !== id));
+      return { status: "success", message: "Coffee deleted successfully" };
+    } catch (error: any) {
+      console.log(error);
+      alert(error.message);
+      return {
+        status: "error",
+        message: error.message || "Something went wrong",
+      };
+    }
+  }
+
+  const value = { allCoffee, handleAddCoffee, handleDeleteCoffee };
 
   return (
     <coffeeContext.Provider value={value}>{children}</coffeeContext.Provider>

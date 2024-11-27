@@ -13,6 +13,11 @@ interface CoffeeType {
 interface CoffeeContextType {
   allCoffee: CoffeeType[];
   handleAddCoffee: (coffee: NewCoffeeType) => Promise<FuncReturnType>;
+  handleEditCoffee: (
+    updatedCoffee: NewCoffeeType,
+    oldCoffee: CoffeeType,
+    id: string
+  ) => Promise<FuncReturnType | undefined>;
   handleDeleteCoffee: (id: string) => Promise<FuncReturnType>;
 }
 

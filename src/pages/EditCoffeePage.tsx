@@ -2,6 +2,7 @@ import { FormEvent, useRef } from "react";
 import bg from "../assets/more/11.png";
 import { Link, useParams } from "react-router-dom";
 import useSingleCoffee from "../hooks/useSingleCoffee";
+import { useCoffeeContext } from "../contexts/CoffeeContext";
 
 const inputFieldArr = [
   { title: "Name", placeholder: "Enter coffee name" },
@@ -15,6 +16,7 @@ const inputFieldArr = [
 ];
 
 function EditCoffeePage() {
+  const { handleEditCoffee } = useCoffeeContext();
   const formRef = useRef<HTMLFormElement>(null);
   const { id } = useParams();
 
@@ -30,7 +32,11 @@ function EditCoffeePage() {
     e.preventDefault();
     if (!formRef.current === null) return;
     const formData = new FormData(formRef.current as HTMLFormElement);
-    Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(
+      formData.entries()
+    ) as unknown as NewCoffeeType;
+
+    handleEditCoffee(data, coffee!, id!);
   }
 
   return (

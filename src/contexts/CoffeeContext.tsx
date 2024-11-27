@@ -50,6 +50,47 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  async function handleEditCoffee(
+    updatedCoffee: NewCoffeeType,
+    oldCoffee: CoffeeType,
+    id: string
+  ): Promise<FuncReturnType | undefined> {
+    try {
+      const updatedKeys = Object.keys(updatedCoffee).reduce((acc, key) => {
+        const value = updatedCoffee[key as keyof NewCoffeeType];
+        if (value !== oldCoffee[key as keyof CoffeeType]) {
+          acc[key as keyof NewCoffeeType] = value;
+        }
+        return acc;
+      }, {} as Partial<NewCoffeeType>);
+
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/coffees/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedKeys),
+        }
+      );
+
+      if (!res.ok) throw new Error(await res.json());
+
+      setAllCoffee((prev) =>
+        prev.map((coffee) =>
+          coffee._id === id ? { ...coffee, ...updatedCoffee } : coffee
+        )
+      );
+
+      return { status: "success", message: "Coffee updated successfully" };
+    } catch (error: any) {
+      console.log(error);
+      return {
+        status: "error",
+        message: error.message || "Something went wrong",
+      };
+    }
+  }
+
   async function handleDeleteCoffee(id: string): Promise<FuncReturnType> {
     try {
       const res = await fetch(
@@ -76,7 +117,12 @@ function CoffeeProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const value = { allCoffee, handleAddCoffee, handleDeleteCoffee };
+  const value = {
+    allCoffee,
+    handleAddCoffee,
+    handleEditCoffee,
+    handleDeleteCoffee,
+  };
 
   return (
     <coffeeContext.Provider value={value}>{children}</coffeeContext.Provider>

@@ -77,6 +77,7 @@ function EditCoffeePage() {
                   placeholder={inputField.placeholder}
                   name={inputField.title.toLowerCase()}
                   defaultValue={getDefaultValue(inputField.title.toLowerCase())}
+                  required
                 />
               </div>
             ))}

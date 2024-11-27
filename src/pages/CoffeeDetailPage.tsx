@@ -22,7 +22,7 @@ function CoffeeDetailPage() {
         <div className="bg-card mt-10 md:py-8 py-4 md:px-5 px-3 rounded-md flex-1 grid md:grid-cols-5 w-3/4 gap-10 md:gap-0">
           <div className="md:col-span-2 flex items-center justify-center rounded-lg md:mx-auto max-h-56 bg-red-500">
             <img
-              src={coffeeData?.image}
+              src={coffeeData?.image || defaultCoffee}
               alt={coffeeData?.name}
               onError={(e) => (e.currentTarget.src = defaultCoffee)}
               className="object-cover object-center h-full"

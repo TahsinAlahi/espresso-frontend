@@ -1,5 +1,5 @@
 import { FaEye, FaPen } from "react-icons/fa";
-import coffeeCup from "../assets/1.png";
+import defaultCup from "../assets/default-coffee-cup.png";
 import { MdDelete } from "react-icons/md";
 import { useCoffeeContext } from "../contexts/CoffeeContext";
 import { Link } from "react-router-dom";
@@ -13,10 +13,11 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
 
   return (
     <div className="grid grid-cols-6 bg-card bg-opacity-70 p-2 rounded-md">
-      <div className="col-span-2 w-full">
+      <div className="col-span-2 w-full h-44 bg-red-500 flex items-center justify-center">
         <img
-          src={coffee.image || coffeeCup}
-          alt=""
+          src={coffee.image || defaultCup}
+          alt={coffee.name}
+          onError={(e) => (e.currentTarget.src = defaultCup)}
           className="h-full object-cover object-center"
         />
       </div>

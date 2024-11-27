@@ -2,6 +2,7 @@ import { FaEye, FaPen } from "react-icons/fa";
 import coffeeCup from "../assets/1.png";
 import { MdDelete } from "react-icons/md";
 import { useCoffeeContext } from "../contexts/CoffeeContext";
+import { Link } from "react-router-dom";
 
 function ProductCard({ coffee }: { coffee: CoffeeType }) {
   const { handleDeleteCoffee } = useCoffeeContext();
@@ -34,9 +35,12 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
         </p>
       </div>
       <div className="col-span-1 text-lg my-auto mx-auto text-center space-y-4 text-white">
-        <div className="p-2 bg-show-btn rounded-md cursor-pointer">
+        <Link
+          to={`/coffee/${coffee._id}`}
+          className="p-2 bg-show-btn rounded-md cursor-pointer block"
+        >
           <FaEye />
-        </div>
+        </Link>
         <div className="p-2 bg-edit-btn rounded-md cursor-pointer">
           <FaPen />
         </div>

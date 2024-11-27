@@ -3,6 +3,7 @@ import defaultCup from "../assets/default-coffee-cup.png";
 import { MdDelete } from "react-icons/md";
 import { useCoffeeContext } from "../contexts/CoffeeContext";
 import { Link } from "react-router-dom";
+import Modal from "./Modal";
 
 function ProductCard({ coffee }: { coffee: CoffeeType }) {
   const { handleDeleteCoffee } = useCoffeeContext();
@@ -55,6 +56,7 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
           <MdDelete />
         </div>
       </div>
+      <Modal />
     </div>
   );
 }

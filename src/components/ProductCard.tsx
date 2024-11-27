@@ -12,8 +12,8 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
   }
 
   return (
-    <div className="grid grid-cols-6 bg-card bg-opacity-70 p-2 rounded-md">
-      <div className="col-span-2 w-full h-44 bg-red-500 flex items-center justify-center">
+    <div className="grid lg:grid-cols-6 py-3 bg-card bg-opacity-70 p-2 rounded-md gap-3">
+      <div className="lg:col-span-2 w-full h-44 flex items-center justify-center">
         <img
           src={coffee.image || defaultCup}
           alt={coffee.name}
@@ -21,7 +21,7 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
           className="h-full object-cover object-center"
         />
       </div>
-      <div className="col-span-3 font-raleway my-auto space-y-2">
+      <div className="lg:col-span-3 font-raleway my-auto space-y-2 text-center lg:text-left">
         <p>
           <span className="font-semibold">Name: </span>
           {coffee.name}
@@ -35,7 +35,7 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
           {coffee.price ? `${coffee.price} taka` : "Free"}
         </p>
       </div>
-      <div className="col-span-1 text-lg my-auto mx-auto text-center space-y-4 text-white">
+      <div className="lg:col-span-1 flex items-center justify-around text-lg mt-4 gap-3 lg:flex-col my-auto mx-auto text-center text-white">
         <Link
           to={`/coffee/${coffee._id}`}
           className="p-2 bg-show-btn rounded-md cursor-pointer block"

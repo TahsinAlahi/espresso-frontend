@@ -34,11 +34,15 @@ function ProductCards() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-5 mt-10">
-        {allCoffee.map((coffee) => (
-          <ProductCard key={coffee._id} coffee={coffee} />
-        ))}
-      </div>
+      {allCoffee.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 w-3/4 mx-auto gap-5 mt-10">
+          {allCoffee.map((coffee) => (
+            <ProductCard key={coffee._id} coffee={coffee} />
+          ))}
+        </div>
+      ) : (
+        <div className="w-full text-center mt-10 text-3xl">No Coffee Found</div>
+      )}
     </main>
   );
 }

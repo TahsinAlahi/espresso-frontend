@@ -15,6 +15,10 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
     setIsModalOpen(false);
   }
 
+  function onCloseModal() {
+    setIsModalOpen(false);
+  }
+
   return (
     <>
       <div className="grid lg:grid-cols-6 py-3 bg-card bg-opacity-70 p-2 rounded-md gap-3">
@@ -61,7 +65,7 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
           </div>
         </div>
       </div>
-      {isModalOpen && <Modal onDelete={onDelete} />}
+      {isModalOpen && <Modal onDelete={onDelete} onCloseModal={onCloseModal} />}
     </>
   );
 }

@@ -13,12 +13,12 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
 
   return (
     <div className="grid lg:grid-cols-6 py-3 bg-card bg-opacity-70 p-2 rounded-md gap-3">
-      <div className="lg:col-span-2 w-full h-44 flex items-center justify-center">
+      <div className="lg:col-span-2 w-full flex items-center justify-center">
         <img
           src={coffee.image || defaultCup}
           alt={coffee.name}
           onError={(e) => (e.currentTarget.src = defaultCup)}
-          className="h-full object-cover object-center"
+          className="h-44 object-cover object-center"
         />
       </div>
       <div className="lg:col-span-3 font-raleway my-auto space-y-2 text-center lg:text-left">

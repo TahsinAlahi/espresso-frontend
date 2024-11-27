@@ -42,9 +42,12 @@ function ProductCard({ coffee }: { coffee: CoffeeType }) {
         >
           <FaEye />
         </Link>
-        <div className="p-2 bg-edit-btn rounded-md cursor-pointer">
+        <Link
+          to={`/edit-coffee/${coffee._id}`}
+          className="p-2 bg-edit-btn rounded-md cursor-pointer"
+        >
           <FaPen />
-        </div>
+        </Link>
         <div
           className="p-2 bg-delete-btn rounded-md cursor-pointer"
           onClick={onDelete}
